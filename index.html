@@ -73,6 +73,8 @@
                     <h1 class="h2" id="title">Choose slide from the list</h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group me-2">
+                            <a id="reload" type="button" class="btn btn-sm btn-outline-secondary disabled"
+                                onclick="reload()">Reload</a>
                             <a id="download" type="button"
                                 class="btn btn-sm btn-outline-secondary disabled">Download</a>
                         </div>
@@ -108,6 +110,12 @@
             document.getElementById('title').innerText = filepath;
             document.getElementById('download').href = fileURL;
             document.getElementById("download").classList.remove("disabled");
+            document.getElementById("reload").classList.remove("disabled");
+        }
+
+        function reload() {
+            const url = document.getElementById('viewer').src;
+            document.getElementById('viewer').src = `${url}&t=${new Date().getTime()}`;
         }
 
         function fetch_filelist() {
